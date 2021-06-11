@@ -10,8 +10,7 @@ def satart_message(message):
     button2 = types.KeyboardButton("Инструкции")
     button3 = types.KeyboardButton("Помощь")
     keyboard.add(button1, button2, button3)
-    bot.send_message(message.chat.id, "Manybot поможет вам создать своего бота. С помощью Manybot вы сможете рассылать\
-    сообщения пользователям бота, создавать свои команды и красивые меню.", reply_markup=keyboard)
+    bot.send_message(message.chat.id, f"Здравствуй {message.from_user.first_name}!\n\nDogiboti поможет вам создать своего бота. С помощью Dogiboti вы сможете рассылать сообщения пользователям бота, создавать свои команды и красивые меню.\n\n Чтобы добавить своего первого бота, используйте команду /addbot.", reply_markup=keyboard)
 
 
 @bot.message_handler(content_types=["text"])
@@ -19,7 +18,7 @@ def answer_start_message(message):
     if message.text == "Добавить нового бота":
         bot.send_message(message.chat.id, "Для начала создай бота в BotFather.")
     elif message.text == "Инструкции":
-        bot.send_message(message.chat.id, "1. Как создать бота\n Ответ: BotFather в помощь.")
+        bot.send_message(message.chat.id, "Как создать своего бота?\n\nОткройте @Dogiboti_bot, используйте команду /addbot и следуйте инструкциям.\n\nКак настроить аватарку и описание бота?\n\nОткройте @BotFather и используйте следующие команды:\n/setuserpic - чтобы изменить аватарку бота\n/setdescription - чтобы изменить текст, который пользователи видят перед тем как нажать на Start.\n/setabouttext - чтобы изменить текст внутри профиля бота\n/setname - чтобы изменить имя бота\n\nПерейдите в @Dogiboti_bot и используйте команду /setdescription чтобы изменить описание бота (также используется в качестве приветствия).")
     elif message.text == "Помощь":
         bot.send_message(message.chat.id, "Тут я вам помогу)")
 
