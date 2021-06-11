@@ -44,5 +44,8 @@ def answer_start_message(message):
 print("Бот запущен!!!")
 
 
+#t.me/Dogiboti_bot (ссылка на бота)
+
+
 if __name__ == "__main__":
     bot.polling(none_stop=True)
