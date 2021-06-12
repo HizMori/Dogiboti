@@ -28,11 +28,17 @@ def help():
      return help
 
 
+def start():
+    start = "Dogiboti поможет вам создать своего бота. " \
+            "С помощью Dogiboti вы сможете рассылать сообщения пользователям бота, " \
+            "создавать свои команды и красивые меню." \
+            "\n\nЧтобы добавить своего первого бота, используйте команду /addbot."
+    return start
+
+
 @bot.message_handler(commands=["start"])
 def satart_message(message):
-    bot.send_message(message.chat.id, f"Здравствуй {message.from_user.first_name}!\n\nDogiboti поможет вам создать своего бота. "
-                                      f"С помощью Dogiboti вы сможете рассылать сообщения пользователям бота, создавать свои команды и красивые меню.\n\n"
-                                      f"Чтобы добавить своего первого бота, используйте команду /addbot.", reply_markup=keyboard1())
+    bot.send_message(message.chat.id, f"Здравствуй {message.from_user.first_name}! {start()}", reply_markup=keyboard1())
 
 
 @bot.message_handler(commands=["help"])
