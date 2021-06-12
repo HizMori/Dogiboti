@@ -8,9 +8,19 @@ def satart_message(message):
     bot.send_message(message.chat.id, f"Здравствуй {message.from_user.first_name}!\n\n{start()}", reply_markup=keyboard1())
 
 
+@bot.message_handler(commands=["addbot"])
+def addbot_message(message):
+    bot.send_message(message.chat.id, addbot())
+
+
 @bot.message_handler(commands=["help"])
 def help_message(message):
     bot.send_message(message.chat.id, help())
+
+
+@bot.message_handler(commands=["manual"])
+def manual_message(message):
+    bot.send_message(message.chat.id, manual())
 
 
 @bot.message_handler(content_types=["text"])
