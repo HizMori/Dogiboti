@@ -8,10 +8,11 @@ def keyboard1():
     button3 = types.KeyboardButton("Помощь")
     keyboard1.add(button1, button2, button3)
     return keyboard1
-
+#Создаём клавиатуру шириной 2 кнопки, состоящей из  3 кнопок
 
 def keyboard2():
     keyboard2 = types.ReplyKeyboardMarkup()
     button1 = types.KeyboardButton("Отменить")
     keyboard2.add(button1)
     return keyboard2
+#Создаём клавиатуру состоящая из одной кнопки
