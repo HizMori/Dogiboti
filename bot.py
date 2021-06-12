@@ -12,10 +12,22 @@ def keyboard1():
 
 
 def keyboard2():
-    keyboard2 = types.ReplyKeyboardMarkup(row_width=1)
+    keyboard2 = types.ReplyKeyboardMarkup()
     button1 = types.KeyboardButton("Отменить")
     keyboard2.add(button1)
     return keyboard2
+
+
+def help(message):
+    bot.send_message(message.chat.id, "🚀 Создание и просмотр ботов\n/addbot - создать нового бота\n"
+                                      "/mybot\n\n📢 Рассылка\n"
+                                      "/newpost - отправить сообщение своим подписчика\n"
+                                      "/subscribers - посмотреть сколько у вас подписчиков\n\n🔧 Настройки бота\n"
+                                      "/setdescription - редактировать описание вашего бота\n"
+                                      "/autoposting - включить автопостинг из VK, Twitter, YouTube и других соцсетей\n"
+                                      "/admins - управление администраторами ваших ботов\n\n"
+                                      "💢 Прочее\n/deletebot - удалить бота\n")
+    return help
 
 
 @bot.message_handler(commands=["start"])
@@ -23,6 +35,11 @@ def satart_message(message):
     bot.send_message(message.chat.id, f"Здравствуй {message.from_user.first_name}!\n\nDogiboti поможет вам создать своего бота. "
                                       f"С помощью Dogiboti вы сможете рассылать сообщения пользователям бота, создавать свои команды и красивые меню.\n\n"
                                       f"Чтобы добавить своего первого бота, используйте команду /addbot.", reply_markup=keyboard1())
+
+
+@bot.message_handler(commands=["help"])
+def help_message(message):
+    bot.send_message(message.chat.id, help(message))
 
 
 @bot.message_handler(content_types=["text"])
@@ -67,13 +84,11 @@ def answer_start_message(message):
                                           "/setdescription - редактировать описание вашего бота\n"
                                           "/autoposting - включить автопостинг из VK, Twitter, YouTube и других соцсетей\n"
                                           "/admins - управление администраторами ваших ботов\n\n"
-                                          "💢 Прочее\n/deletebot - удалить бота\n")
-
+                                          "💢 Прочее\n/deletebot - удалить бота\n/help - вызвать это меню")
+    else:
+        bot.send_message(message.chat.id, "Я не знаю таких команд. Пропешите /help, чтобы посмотреть существующие команды.")
 
 print("Бот запущен!!!")
-
-
-#t.me/Dogiboti_bot (ссылка на бота)
 
 
 if __name__ == "__main__":
