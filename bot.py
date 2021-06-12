@@ -1,5 +1,5 @@
 import telebot
-from defbot import *
+from funbot import *
 from keyboardbot import *
 bot = telebot.TeleBot("1763935068:AAEw63baPA3mul-18P5SzkE7tUxfqEWSjT4")
 
