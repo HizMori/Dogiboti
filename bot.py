@@ -61,7 +61,7 @@ def manual():
 
 @bot.message_handler(commands=["start"])
 def satart_message(message):
-    bot.send_message(message.chat.id, f"Здравствуй {message.from_user.first_name}! {start()}", reply_markup=keyboard1())
+    bot.send_message(message.chat.id, f"Здравствуй {message.from_user.first_name}!\n\n{start()}", reply_markup=keyboard1())
 
 
 @bot.message_handler(commands=["help"])
