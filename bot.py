@@ -8,27 +8,27 @@ bot = telebot.TeleBot("1763935068:AAEw63baPA3mul-18P5SzkE7tUxfqEWSjT4")
 def satart_message(message):
     bot.send_message(message.chat.id, f"Здравствуй {message.from_user.first_name}!\n\n{start()}",
                      reply_markup=keyboard1())
-
+#Обрабатывает команду /start
 
 @bot.message_handler(commands=["addbot"])
 def addbot_message(message):
     bot.send_message(message.chat.id, addbot())
-
+#Обрабатывает команду /addbot
 
 @bot.message_handler(commands=["help"])
 def help_message(message):
     bot.send_message(message.chat.id, help())
-
+#Обрабатывает команду /help
 
 @bot.message_handler(commands=["manual"])
 def manual_message(message):
     bot.send_message(message.chat.id, manual())
-
+#Обрабатывает команду /manual
 
 @bot.message_handler(commands=["cancel"])
 def cancel_message(message):
     bot.send_message(message.chat.id, cancel(), reply_markup=keyboard1())
-
+#Обрабатывает команду /cancel
 
 @bot.message_handler(content_types=["text"])
 def answer_start_message(message):
@@ -46,10 +46,11 @@ def answer_start_message(message):
     else:
         bot.send_message(message.chat.id, "Я не знаю таких команд. Пропешите /help, "
                                           "чтобы посмотреть существующие команды.")
-
+#Обрабатывает текстовые сообщения присланные пользователем и кнопки
 
 print("Бот запущен!!!")
 
 
 if __name__ == "__main__":
     bot.polling(none_stop=True)
+#Запускаем бота
