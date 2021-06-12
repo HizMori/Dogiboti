@@ -24,6 +24,11 @@ def manual_message(message):
     bot.send_message(message.chat.id, manual())
 
 
+@bot.message_handler(commands=["cancel"])
+def cancel_message(message):
+    bot.send_message(message.chat.id, cancel(), reply_markup=keyboard1())
+
+
 @bot.message_handler(content_types=["text"])
 def answer_start_message(message):
     if message.text == "Добавить нового бота":
