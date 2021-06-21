@@ -3,7 +3,6 @@ from funbot import *
 from keyboardbot import *
 bot = telebot.TeleBot("1763935068:AAEw63baPA3mul-18P5SzkE7tUxfqEWSjT4")
 
-
 @bot.message_handler(commands=["start"])
 def satart_message(message):
     bot.send_message(message.chat.id, f"Здравствуй {message.from_user.first_name}!\n\n{start()}",
@@ -12,8 +11,19 @@ def satart_message(message):
 
 @bot.message_handler(commands=["addbot"])
 def addbot_message(message):
-    bot.send_message(message.chat.id, addbot())
+    adbot = bot.send_message(message.chat.id, addbot(), reply_markup=keyboard2())
+    bot.register_next_step_handler(adbot, ready_made_bot)
 #Обрабатывает команду /addbot
+
+def ready_made_bot(message):
+    global tokenbot
+    tokenbot = message.text
+    chunks = [tokenbot[i:i + 10] for i in range(0, 10, 10)]
+    if type(chunks[0]) == int:
+        if 1000000000 < int(chunks[0]) < 10000000000:
+            adtoken = bot.send_message(message.chat.id, f"Токен для @ принят!\nПоследний шаг.\nНапишите пару слов о @ExsiBot. "
+                                                        f"Что будет делать ваш бот?\nИли используйте /skip, чтобы пропустить этот шаг.")
+            return adtoken
 
 @bot.message_handler(commands=["help"])
 def help_message(message):
@@ -31,9 +41,10 @@ def cancel_message(message):
 #Обрабатывает команду /cancel
 
 @bot.message_handler(content_types=["text"])
-def answer_start_message(message):
+def answer_message(message):
     if message.text == "Добавить нового бота":
-        bot.send_message(message.chat.id, addbot(), reply_markup=keyboard2())
+        adbot = bot.send_message(message.chat.id, addbot(), reply_markup=keyboard2())
+        bot.register_next_step_handler(adbot, ready_made_bot)
     elif message.text == "Отменить":
         bot.send_message(message.chat.id, "Отменено", reply_markup=keyboard1())
     elif message.text == "Инструкции":
@@ -43,13 +54,9 @@ def answer_start_message(message):
     elif message.text == "Привет":
         bot.send_message(message.chat.id, f"Здравствуй {message.from_user.first_name}!\n\n{start()}",
                          reply_markup=keyboard1())
-    else:
-        bot.send_message(message.chat.id, "Я не знаю таких команд. Пропешите /help, "
-                                          "чтобы посмотреть существующие команды.")
 #Обрабатывает текстовые сообщения присланные пользователем и кнопки
 
 print("Бот запущен!!!")
-
 
 if __name__ == "__main__":
     bot.polling(none_stop=True)
