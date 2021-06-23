@@ -15,16 +15,6 @@ def addbot_message(message):
     bot.register_next_step_handler(adbot, ready_made_bot)
 #Обрабатывает команду /addbot
 
-def ready_made_bot(message):
-    global tokenbot
-    tokenbot = message.text
-    chunks = [tokenbot[i:i + 10] for i in range(0, 10, 10)]
-    if type(chunks[0]) == int:
-        if 1000000000 < int(chunks[0]) < 10000000000:
-            adtoken = bot.send_message(message.chat.id, f"Токен для @ принят!\nПоследний шаг.\nНапишите пару слов о @ExsiBot. "
-                                                        f"Что будет делать ваш бот?\nИли используйте /skip, чтобы пропустить этот шаг.")
-            return adtoken
-
 @bot.message_handler(commands=["help"])
 def help_message(message):
     bot.send_message(message.chat.id, help())
@@ -55,6 +45,8 @@ def answer_message(message):
         bot.send_message(message.chat.id, f"Здравствуй {message.from_user.first_name}!\n\n{start()}",
                          reply_markup=keyboard1())
 #Обрабатывает текстовые сообщения присланные пользователем и кнопки
+
+
 
 print("Бот запущен!!!")
 
